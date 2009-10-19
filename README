@@ -1,0 +1,23 @@
+Prerequires
+- http://rubyforge.org/projects/rgl
+
+
+If you want to graph the dependency of a package, say 'glibc', do
+the following
+
+1. generate dependency graph in '.dot' format
+
+  ruby depgrapher.rb --format dot --repo <path-to-solv-file> --install glibc > glibc.dot
+
+2. The result is pretty crowded, do a transitive reduction
+
+  tred glibc.dot > glibc.tred
+
+3. Now generate a view in PostScript format
+
+  dot -Tps glibc.tred > glibc.ps
+
+4. And view it
+
+  gv glibc.ps
+
